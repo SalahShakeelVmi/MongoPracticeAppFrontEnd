@@ -112,6 +112,7 @@ const handleSearchChange = (e) => {
     const validationSchema = () =>
   Yup.object().shape({
     name: Yup.string().required('Name is required'),
+    date: Yup.string().required('Date is required'),
     email: Yup.string()
       .email('Invalid email')
       .required('Email is required')
@@ -221,6 +222,13 @@ const handleSearchChange = (e) => {
           <label htmlFor="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
           <Field type="email" id="email" name="email" placeholder="Your email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
           <ErrorMessage name="email" component="div" className='text-red-500' />
+        </div>
+
+
+        <div>
+          <label htmlFor="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Date</label>
+          <Field type="date" id="date" name="date" placeholder="Your date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+          <ErrorMessage name="date" component="div" className='text-red-500' />
         </div>
 
 {selectedUser === null && (
@@ -392,7 +400,7 @@ const handleSearchChange = (e) => {
                         <th scope="col" class="px-4 py-3">#</th>
                             <th scope="col" class="px-4 py-3">Name</th>
                             <th scope="col" class="px-4 py-3">Email</th>
-                        
+                            <th scope="col" class="px-4 py-3">Date</th>
                             <th scope="col" class="px-4 py-3 flex items-center justify-end">
                                Actions
                             </th>
@@ -414,7 +422,7 @@ const handleSearchChange = (e) => {
                              <td class="px-4 py-3">{index+1}</td>
                             <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.name}</th>
                             <td class="px-4 py-3">{user.email}</td>
-                       
+                            <td class="px-4 py-3">{user.date}</td>
                             <td class="px-4 py-3 flex items-center justify-end">
                        
                             <MdEdit size={20} onClick={()=>{setOpenCreateUserModal(true); setSelectedUser(user)}} className='cursor-pointer mr-2' />
