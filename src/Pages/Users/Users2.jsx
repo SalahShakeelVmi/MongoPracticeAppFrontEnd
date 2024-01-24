@@ -13,6 +13,8 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { Page, Text, View, Document, StyleSheet, PDFViewer, Link } from '@react-pdf/renderer';
+import { CSVLink } from 'react-csv';
+
 
 const Users2 = () => {
   const [usersData, setUsersData] = useState([]);
@@ -185,6 +187,9 @@ const styles = StyleSheet.create({
   },
 });
 
+const headers = Object.keys(usersData.length > 0 ? usersData[0] : {});
+
+
 
   return (
     <div>
@@ -266,6 +271,9 @@ const styles = StyleSheet.create({
         <ClipLoader color={'#123abc'} loading={loading} css={css} size={150} />
       ) : (
         <div>
+            <CSVLink data={usersData} headers={headers} filename="userData.csv">
+        <button>Download CSV</button>
+      </CSVLink>
              <button onClick={()=>setPdfModal(true)} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>PDF</button>
                <button onClick={()=>fetchData(1)} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Reset</button>
             <button onClick={()=>setDateModal(true)} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Dange Range</button>
